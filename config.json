@@ -1,0 +1,9 @@
+{
+  "db": {
+    "database": "logs",
+    "user": "your_username",
+    "password": "your_password",
+    "host": "your_postgresql_host_address",
+    "port": "5432"
+  }
+}

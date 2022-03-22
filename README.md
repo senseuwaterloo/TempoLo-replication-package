@@ -24,9 +24,9 @@ The data can be found in the `data` directory, which contains six files:
 * `tempolo.sql.zip`: the file is split into two parts and contains all the extracted logging statements as well as the methods from the four projects.
 
 ## Replicate the results
-> 1. Create a database named **logs** using the PostgreSQL.
+> 1. Create an empty database named **logs** using PostgreSQL.
 
-> 2. Unzip the file **tempolo.sql.zip**, and restore it to the DB: logs using command **pg_restore**.
+> 2. Unzip the file **tempolo.sql.zip**, and restore it to the DB: **logs** using command **pg_restore**.
 
 > 3. Modify the configuration file: **config.json** with your own database information.
 

@@ -1,4 +1,4 @@
-# packages in environment at /data/zding/conda_env/log-analysis-py36:
+# packages in environment at/log-analysis-py36:
 #
 # Name                    Version                   Build  Channel
 _libgcc_mutex             0.1                 conda_forge    conda-forge

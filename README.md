@@ -26,7 +26,7 @@ The data can be found in the `data` directory, which contains six files:
 ## Replicate the results
 > 1. Create an empty database named **logs** using PostgreSQL.
 
-> 2. Unzip the file **tempolo.sql.zip**, and restore it to the DB: **logs** using command **pg_restore**.
+> 2. Unzip the file **tempolo.sql.zip.001** (we split the original zip file, **tempolo.sql.zip** into two parts, and they should be put together and then unzip the first part **tempolo.sql.zip.001**), and then restore it to the DB: **logs** using command **pg_restore**.
 
 > 3. Modify the configuration file: **config.json** with your own database information.
 

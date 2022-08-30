@@ -37,4 +37,17 @@ jupyter notebook
 
 > 5. The notebook file **Replication-Package.ipynb** contains all the source code for reproducing the results reported in our paper.
 
+## Discussion on a machine learning-based approach. 
+Besides the rule-based approach, we also implemented another machine-learning (ML) based approach to locate the target source code, aiming to reduce the efforts of refining the rules. 
 
+We first extract three types of features: (1) considering the logging statement and source code as plain text and utilizing the features that are widely used in NLP, such as string similarity, entropy, and tf-idf; (2) distances (e.g., line distance, AST node distance, and block distance) between the logging statement and each line of source code; (3) using the newly released CodeBERT model [29] to generate distributed representations of the logging statement and the source code. Then, we adopt the LambdaRank model [30] to perform the pairwise ranking. 
+
+We evaluate the accuracy of the ML based approach by manually labeling around 600 logging statements and their corresponding source code. We split 80% of the dataset as training and the remaining 20% for testing. As a result, the ML based approach only returns a top-1 accuracy of 50%. Besides, there may exist deep learning models that are useful for aligning code and natural language in other tasks [31], but they often require a larger labeled dataset. Considering the low accuracy and the costly labeling efforts, we opt to not use the ML (or DL) based approach.
+
+### References
+
+[29] Z. Feng, D. Guo, D. Tang, N. Duan, X. Feng, M. Gong, L. Shou, B. Qin, T. Liu, D. Jiang, and M. Zhou, “Codebert: A pre-trained model for programming and natural languages,” in Findings of the Association for Computational Linguistics: EMNLP 2020, Online Event, 16-20 November 2020, ser. Findings of ACL, T. Cohn, Y. He, and Y. Liu, Eds., vol. EMNLP 2020. Association for Computational Linguistics, 2020, pp. 1536–1547.
+
+[30] C. J. C. Burges, R. Ragno, and Q. V. Le, “Learning to rank with non-smooth cost functions,” in Advances in Neural Information Processing Systems 19, Proceedings of the Twentieth Annual Conference on Neural Information Processing Systems, Vancouver, British Columbia, Canada, December 4-7, 2006, B. Schölkopf, J. C. Platt, and T. Hofmann, Eds. MIT Press, 2006, pp. 193–200.
+
+[31] Z. Liu, X. Xia, M. Yan, and S. Li, “Automating just-in-time comment updating,” in Proceedings of the 35th IEEE/ACM International Conference on Automated Software Engineering, ser. ASE ’20. New York, NY, USA: Association for Computing Machinery, 2020, p. 585–597. [Online]. Available: https://doi.org/10.1145/3324884.3416581

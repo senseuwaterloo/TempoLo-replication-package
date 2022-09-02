@@ -44,7 +44,24 @@ We first extract three types of features: (1) considering the logging statement 
 
 We evaluate the accuracy of the ML based approach by manually labeling around 600 logging statements and their corresponding source code. We split 80% of the dataset as training and the remaining 20% for testing. As a result, the ML based approach only returns a top-1 accuracy of 50%. Besides, there may exist deep learning models that are useful for aligning code and natural language in other tasks [31], but they often require a larger labeled dataset. Considering the low accuracy and the costly labeling efforts, we opt to not use the ML (or DL) based approach.
 
+## Discussion on potential downstream tasks.
+
+Some downstream tasks may potentially benefit from utilizing our observations of the logging-code temporal relations and our tool. For example, in the task of automatic logging text generation, we ﬁnd that although LoGenText proposed by Ding et al. [10] produces SOTA results, there still exist cases that can be improved by fixing the temporal inconsistencies ([Result Link](https://github.com/conf-202x/experimental-result)). For example, as shown below, developers insert two logging statements (line 2 and line 5) to describe different status of the “close()” statement (line 4). In this task, the ﬁrst logging statement (line 2) is masked, and based on the given source code, LoGenText generates the perfective word “closed” (instead of the word “closing” used by developer), which violates the intention of the developer. Future work may consider using our tool to detect such inconsistencies and improve the results. 
+
+Besides, by considering the temporal relationship, prior studies (e.g., [32]) that build ﬁnite state machines from logs can more accurately represent the actual temporal status of the events described in the logs.
+
+```
+...
+1 // Generated logging text by LoGenText: LOG.debug("closed socket {}")
+2 LOG.debug("closing socket {}")
+3 try {
+4     socket.close();
+5     LOG.debug("Closed socket {}", socket);
+...
+```
 ### References
+
+[10] Z. Ding, H. Li, and W. Shang, “Logentext: Automatically generating logging texts using neural machine translation,” in Proceedings of the 29th IEEE International Conference on Software Analysis, Evolution and Reengineering, ser. SANER ’22, 2022.
 
 [29] Z. Feng, D. Guo, D. Tang, N. Duan, X. Feng, M. Gong, L. Shou, B. Qin, T. Liu, D. Jiang, and M. Zhou, “Codebert: A pre-trained model for programming and natural languages,” in Findings of the Association for Computational Linguistics: EMNLP 2020, Online Event, 16-20 November 2020, ser. Findings of ACL, T. Cohn, Y. He, and Y. Liu, Eds., vol. EMNLP 2020. Association for Computational Linguistics, 2020, pp. 1536–1547.
 

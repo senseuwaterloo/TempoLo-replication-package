@@ -21,7 +21,7 @@ The data can be found in the `data` directory, which contains six files:
 * `ground_truth.csv`: the file contains the manually identified temporal inconsistencies from the sampled data, which is used as our first evaluation data
 * `detected-log-code-inconsistency.csv`: the file contains the detected temporal inconsistencies from the remaining data, which is used as our second evaluation data
 * `commit-history.csv`: the file contains the temporal inconsistencies mined from commit history, which is used as our third evaluation data.
-* `tempolo.sql.zip`: the file is split into two parts and contains all the extracted logging statements as well as the methods from the four projects.
+* `tempolo.sql.zip`: the file is split into two parts and contains all the extracted logging statements as well as the methods from the four projects (please refer to the paper on how to extract logging statements from the project.)
 
 ## Replicate the results
 > 1. Create an empty database named **logs** using PostgreSQL.
@@ -59,6 +59,16 @@ Besides, by considering the temporal relationship, prior studies (e.g., [32]) th
 5     LOG.debug("Closed socket {}", socket);
 ...
 ```
+## Relevant instances:
+
+1. Case from Spring framework: https://github.com/jodavimehran/code-tracker/issues/65 The case is in file AbstractMessageConverterMethodProcessor.java
+https://github.com/spring-projects/spring-framework/commit/900bc8a2e341277296a463c7b5db4abb944e14d7?diff=split#diff-ea43e736983102ff93143d5a8e5a0e63837233bafa3a5f8bae78256211ed9113R280-R283 and involves a logging statement that is moved within the parent block from the end of the block to the beginning of the block. The message is changing tense from "Written" to "Writing".
+2. Issue reports for Hadoop (still pending): 1) https://issues.apache.org/jira/browse/YARN-11143; 2) https://issues.apache.org/jira/browse/YARN-11144
+3. Issue reports for Jmeter: https://github.com/apache/jmeter/pull/714
+4. Issue reports for Tomcat: https://github.com/apache/tomcat/pull/514
+5. Issue reports for ActiveMQ: https://github.com/apache/activemq/pull/840
+
+
 ### References
 
 [10] Z. Ding, H. Li, and W. Shang, “Logentext: Automatically generating logging texts using neural machine translation,” in Proceedings of the 29th IEEE International Conference on Software Analysis, Evolution and Reengineering, ser. SANER ’22, 2022.
